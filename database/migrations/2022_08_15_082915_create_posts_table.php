@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->text('deskripsi');
             $table->text('content');
             $table->foreignId('kategori_id');
+            $table->foreignId('tag_id');
             $table->enum('status',['publish','draft']);
             $table->timestamp('published_at')->nullable();
             $table->timestamps();

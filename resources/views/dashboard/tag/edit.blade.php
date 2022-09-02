@@ -1,33 +1,23 @@
 @extends('dashboard.layouts.main')
 
-@section('title')
-@endsection
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h1 class="h3 mb-2 text-gray-800">Tag Create</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Tag Edit</h1>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('tag.store') }}" method="POST">
+                    <form action="{{ route('tag.update', $tags->id) }}" method="POST">
+                        @method('put')
                         @csrf
                         <!-- title -->
                         <div class="form-group">
                             <label for="input_tag_name" class="font-weight-bold">
                                 Nama
                             </label>
-                            <input id="input_tag_name" name="name" type="text" class="form-control"
-                                placeholder="Masukkan Nama Kategori" required />
-                        </div>
-                        <!-- slug -->
-                        <div class="form-group">
-                            <label for="input_tag_slug" class="font-weight-bold">
-                                Slug
-                            </label>
-                            <input id="input_tag_slug" name="slug" type="text" class="form-control"
-                                placeholder="Slug Kategori" readonly />
+                            <input id="input_tag_name" name="name" type="text"
+                                value="{{ old('name', $tags->name) }}" class="form-control" />
                         </div>
 
                         <div class="float-right">
@@ -39,7 +29,6 @@
             </div>
         </div>
     </div>
-
     @push('css-external')
         <link rel="stylesheet" href="{{ asset('../vendor/select2/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('../vendor/select2/css/select2-bootstrap4.min.css') }}">
@@ -50,7 +39,6 @@
         {{-- filemanager --}}
         <script src="{{ asset('../vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
     @endpush
-
     @push('javascript-internal')
         <script>
             $(function() {
@@ -65,7 +53,7 @@
                 $('#input_tag_name').change(function() {
                     let name = $(this).val();
                     $('#input_tag_slug').val(generateSlug(name));
-                });  
+                });
             });
         </script>
     @endpush

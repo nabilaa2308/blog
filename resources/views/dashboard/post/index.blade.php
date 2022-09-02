@@ -42,6 +42,7 @@
                                     <th scope="col">THUMBNAIL</th>
                                     <th scope="col">DESKRIPSI</th>
                                     <th scope="col">KATEGORI</th>
+                                    <th scope="col">TAG</th>
                                     <th scope="col">STATUS</th>
                                     <th scope="col">AKSI</th>
                                 </tr>
@@ -80,6 +81,11 @@
                                         <td>
                                             <label class="mt-auto mb-auto">
                                                 {{ $post->kategori_id }}
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="mt-auto mb-auto">
+                                                {{ $post->tag_id }}
                                             </label>
                                         </td>
                                         <td>

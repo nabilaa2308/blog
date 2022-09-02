@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class tagController extends Controller
 {
@@ -36,7 +39,11 @@ class tagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tags = Tag::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-'),
+        ]);
+        return redirect()->route('tag.index');
     }
 
     /**
@@ -56,9 +63,10 @@ class tagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tag $tag)
+    public function edit(Tag $tags, $id)
     {
-        //
+        $tags = Tag::find($id);
+        return view('dashboard.tag.edit', compact('tags'));
     }
 
     /**
@@ -70,7 +78,11 @@ class tagController extends Controller
      */
     public function update(Request $request, Tag $tag)
     {
-        //
+        $tag->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-'),
+        ]);
+        return redirect('/dashboard/tag');
     }
 
     /**
@@ -81,6 +93,8 @@ class tagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        Alert::success('Success', 'Tag Berhasil Dihapus!');
+        return redirect('/dashboard/tag');
     }
 }

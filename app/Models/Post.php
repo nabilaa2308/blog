@@ -16,11 +16,17 @@ class Post extends Model
         'deskripsi',
         'content',
         'kategori_id',
+        'tag_id',
         'status',
     ];
 
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
     }
 }

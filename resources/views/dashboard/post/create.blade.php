@@ -29,7 +29,8 @@
                                     @else
                                         <img class="img-preview img-fluid mb-3 col-sm-5 d-block" width="200px">
                                     @endif
-                                        <input class="form-control" type="file" id="thumbnail" name="thumbnail" onclick="" readonly />
+                                    <input class="form-control" type="file" id="thumbnail" name="thumbnail"
+                                        onclick="" readonly />
                                 </div>
                                 <!-- description -->
                                 <div class="form-group">
@@ -37,7 +38,7 @@
                                         Deskripsi
                                     </label>
                                     <textarea id="input_post_deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Post" class="form-control "
-                                        rows="3"></textarea>
+                                        rows="4"></textarea>
                                 </div>
                                 <!-- content -->
                                 <div class="form-group">
@@ -45,7 +46,7 @@
                                         Content
                                     </label>
                                     <textarea id="input_post_content" name="content" placeholder="Masukka Content Post" class="form-control "
-                                        rows="20"></textarea>
+                                        rows="19"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -54,68 +55,68 @@
                                     <label for="input_post_kategori" class="font-weight-bold">
                                         Kategori
                                     </label>
-                                    <div class="form-control overflow-auto-responsive" style="height: 800px">
+                                    <div class="form-control overflow-auto-responsive" style="height: 400px">
                                         <!-- List Kategori -->
                                         <ul class="pl-1 my-1" style="list-style: none;">
-                                            <select class="form-control" id="kategori-option" name="kategori_id" >
+                                            <select class="form-control" id="kategori-option" name="kategori_id" data-placeholder="Pilih Kategori">
                                                 @foreach ($kategoris as $kategori)
-                                                   <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
+                                                    <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
                                                 @endforeach
-                                             </select>
+                                            </select>
                                         </ul>
                                         <!-- List Kategori -->
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Tag -->
-                        <div class="row">
-                            <div class="col-md-12">
-                               <!-- tag -->
-                               <div class="form-group">
-                                <label for="select_post_tag" class="font-weight-bold">
-                                    Tag
-                                 </label>
-                                    <select class="tag-responsive form-control custom-select" multiple="multiple">
-                                        <option value="tag1">tag1</option>
-                                        <option value="tag2">tag2</option>
-                                        <option value="tag3">tag3</option>
-                                        <option value="tag4">tag4</option>
-                                        <option value="tag5">tag5</option>
-                                    </select>
-                               </div>
-
-                                <!-- status -->
+                                <!-- tag -->
                                 <div class="form-group">
-                                    <label for="select_post_status" class="font-weight-bold">
-                                        Status
+                                    <label for="select_post_tag" class="font-weight-bold">
+                                        Tag
                                     </label>
-                                    <select id="select_post_status" name="status" class="custom-select">
-                                        <option value="draft">Draft</option>
-                                        <option value="publish">Publish</option>
-                                    </select>
+                                    <div class="form-control overflow-auto-responsive" style="height: 370px">
+                                        <ul class="pl-1 my-1" style="list-style: none;">
+                                            <select class="tag-responsive form-control custom-select w-100" id="select_post_tag" name="tag[]" data-placeholder="Pilih Tag" multiple="multiple">
+                                                @foreach ($tags as $tag)
+                                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="float-right">
-                                    <a class="btn btn-warning px-4" href="{{ route('post.index') }}">Back</a>
-                                    <button type="submit" class="btn btn-primary px-4">
-                                        Save
-                                    </button>
-                                </div>
-                            </div>
+                        <!-- status -->
+                        <div class="form-group">
+                            <label for="select_post_status" class="font-weight-bold">
+                                Status
+                            </label>
+                            <select id="select_post_status" name="status" class="custom-select">
+                                <option value="draft">Draft</option>
+                                <option value="publish">Publish</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-            </form>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="float-right">
+                            <a class="btn btn-warning px-4" href="{{ route('post.index') }}">Back</a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
         </div>
+    </div>
+    </form>
+    </div>
     </div>
 
     @push('css-external')
         <link rel="stylesheet" href="{{ asset('../vendor/select2/css/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('../vendor/select2/css/select2-bootstrap4.min.css') }}">
+        {{-- multiple-select2 --}}
+        <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
     @endpush
 
     @push('javascript-external')
@@ -125,11 +126,13 @@
         {{-- Tinymce5 --}}
         <script src="{{ asset('vendor/tinymce5/jquery.tinymce.min.js') }}"></script>
         <script src="{{ asset('vendor/tinymce5/tinymce.min.js') }}"></script>
+        {{-- multiple-select2 --}}
+        <script src="{{ asset('js/select2.min.js') }}"></script>
         <script>
             //Multiple Select
-            $(document).ready(function () {
+            $(document).ready(function() {
                 $('.tag-responsive').select2({
-                    multiple:true,
+                    multiple: true,
                 });
             });
         </script>

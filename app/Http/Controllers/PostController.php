@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Kategori;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
@@ -33,6 +34,7 @@ class PostController extends Controller
     {
         return view('dashboard.post.create', [
             'kategoris' => Kategori::all(),
+            'tags' => Tag::all(),
             'post' => $post
         ]);
     }
@@ -57,6 +59,7 @@ class PostController extends Controller
             'deskripsi' => $request->deskripsi,
             'content' => $request->content,
             'kategori_id' => $request->kategori_id,
+            'tag_id' => $request->tag_id,
             'status' => $request->status,
         ]);
         Alert::success('Success', 'Post Berhasil Ditambahkan!');
@@ -69,10 +72,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post, Kategori $kategoris)
+    public function show(Post $post, Kategori $kategoris, Tag $tags)
     {
         $kategoris = Kategori::find($post);
-        return view('dashboard.post.detail', compact('post','kategoris'));
+        $tags = Tag::find($post);
+        return view('dashboard.post.detail', compact('post','kategoris','tags'));
     }
 
     /**
@@ -81,10 +85,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post, Kategori $kategoris)
+    public function edit(Post $post, Kategori $kategoris, Tag $tags)
     {
         $kategoris = Kategori::find($post);
-        return view('dashboard.post.edit', compact('post', 'kategoris'));
+        $tags = Tag::find($post);
+        return view('dashboard.post.edit', compact('post','kategoris','tags'));
     }
 
     /**
@@ -108,6 +113,7 @@ class PostController extends Controller
             'deskripsi' => $request->deskripsi,
             'content' => $request->content,
             'kategori_id' => $request->kategori_id,
+            'tag_id' => $request->tag_id,
             'status' => $request->status,
         ]);
         Alert::success('Success', 'Post Berhasil Diupdate!');
