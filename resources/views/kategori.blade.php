@@ -7,29 +7,40 @@
         </div>
         <h1 class="text-white mt-4 mb-4 text-center">Kategori</h1>
     </div>
-    <!-- Courses Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row mx-0 justify-content-center">
-                <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-6 pb-4">
-                            @foreach ($kategoris as $kategori)
-                                <a class="courses-list-item position-relative d-block overflow-hidden mb-2"
-                                    href="detail.html">
-                                    <img class="img-fluid" src="..." alt="">
-                                    <div class="courses-text">
-                                        <h4 class="text-center text-white px-3">laravel</h4>
-                                        <div class="border-top w-100 mt-3">
-                                        </div>
-                                    </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    </a>
-                </div>
+     
+     <!-- List category -->
+     <div class="row">
+        {{-- @forelse ($kategoris as $kategori) --}}
+            <!-- true -->
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+               <!-- thumbnail:start -->
+               <!-- Thumbnail -->
+                    <img class="img-fluid img-thumbnail" style="700x400" src="..."/>
+               <!-- thumbnail:end -->         
+               <div class="card-body">
+                  <h4 class="card-title">
+                     <a href="">
+                        {{-- {{ $kategori->name }} --}}
+                     </a>
+                  </h4>
+               </div>
             </div>
+         </div>
+        {{-- @empty --}}
+            <!-- false -->
+        <h3 class="text-center">
+            No data
+         </h3>
+        {{-- @endforelse --}}
+     </div>
+     <!-- List category -->
+     
+     <!-- pagination:start -->
+     <div class="row">
+        <div class="col">
+     
         </div>
-    </div>
-    <!-- Courses End -->
+     </div>
+     <!-- pagination:end -->
 @endsection

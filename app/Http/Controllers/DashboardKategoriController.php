@@ -43,14 +43,10 @@ class DashboardKategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $fileName = $request->file('thumbnail')
-        ->storeAs(
-            $this->path,
-            time() . ".". $request->file('thumbnail')->getClientOriginalExtension(), 'public');
         $kategori = Kategori::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-'),
-            'thumbnail' => $fileName,
+            'thumbnail' => parse_url($request->thumbnail)['path'],
         ]);
         Alert::success('Success', 'Kategori Berhasil Ditambahkan!');
         return redirect()->route('kategori.index');
@@ -88,15 +84,10 @@ class DashboardKategoriController extends Controller
      */
     public function update(Request $request, kategori $kategori)
     {
-        $fileName = $kategori->thumbnail;
-        if ($request->hasFile('thumbnail')) {
-            $fileName = $request->file('thumbnail')->storeAs('thumbnails',time() . ".". $request->file('thumbnail')->getClientOriginalExtension(), 'public');
-            Storage::delete(['public/'. $kategori->thumbnail]);
-        }
         $kategori->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-'),
-            'thumbnail' => $fileName,
+            'thumbnail' => parse_url($request->thumbnail)['path'],
         ]);
         Alert::success('Success', 'Kategori Berhasil Diupdate!');
         return redirect('/dashboard/kategori');

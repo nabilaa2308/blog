@@ -9,16 +9,12 @@
                 </div>
                 <div class="card-body">
                     <!-- Thumbnail -->
-                    <img class="img-fluid img-thumbnail" width="200px"  src="{{ asset('storage/' . $kategori->thumbnail) }}"/>
+                    <img class="img-fluid img-thumbnail" width="200px" src="{{ asset('storage/..' . $kategori->thumbnail) }}"/>
 
                     <!-- title -->
                     <h2 class="my-1">
                         {{ $kategori->name }}
                     </h2>
-                    {{-- <!-- slug -->
-                    <p class="text-justify">
-                        {{ $kategori->slug }}
-                    </p> --}}
                     <div class="float-right">
                         <a class="btn btn-warning px-4" href="{{ route('kategori.index') }}">Kembali</a>
                     </div>
@@ -27,15 +23,3 @@
         </div>
     </div>
 @endsection
-@push('css-internal')
-    <!-- style -->
-    <style>
-        .img-tumbnail {
-            width: 50%;
-            height: 200px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-    </style>
-@endpush

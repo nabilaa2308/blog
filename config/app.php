@@ -164,7 +164,7 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-
+        Eusonlito\LaravelMeta\MetaServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -232,7 +232,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
+        'Meta'    => Eusonlito\LaravelMeta\Facade::class,
     ],
 
 ];

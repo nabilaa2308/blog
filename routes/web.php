@@ -23,14 +23,17 @@ use App\Models\Kategori;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home"
+
+Route::get('/', function(){
+    return view('home',[
+        "title" => "Home",
+        HomeController::class, 'index'
     ]);
 });
 Route::get('/kategori', function () {
     return view('kategori',[
-        "title" => "kategori",
+        "title" => "Kategori",
+        HomeController::class, 'listKategori'
     ]);
 });
 
@@ -55,11 +58,3 @@ Route::resource('/dashboard/post', PostController::class);
 Route::resource('/dashboard/tag', tagController::class);
 
 
-
-// Auth::routes();
-
-// Route::get('/dashboard/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-
-// Auth::routes();
-
-// Route::get('/dashboard/index', [App\Http\Controllers\HomeController::class, 'index'])->name('index');

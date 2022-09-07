@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class TagPost extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'slug',
+        'tag_id',
+        'post_id',
     ];
 
     public function scopeSearch($query, $name)
@@ -21,11 +21,11 @@ class Tag extends Model
 
     public function posts()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class, 'post_id', 'id');
     }
 
-    public function tag_post()
+    public function dataTags()
     {
-        return $this->belongsToMany(TagPost::class);
+        return $this->belongsTo(Tag::class, 'tag_id', 'id');
     }
 }

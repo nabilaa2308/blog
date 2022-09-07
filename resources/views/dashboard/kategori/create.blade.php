@@ -21,19 +21,23 @@
                             <input id="input_kategori_name" name="name" type="text" class="form-control"
                                 placeholder="Masukkan Nama Kategori" required />
                         </div>
-                        {{-- <!-- slug -->
-                        <div class="form-group">
-                            <label for="input_kategori_slug" class="font-weight-bold">
-                                Slug
-                            </label>
-                            <input id="input_kategori_slug" name="slug" type="text" class="form-control"
-                                placeholder="Slug Kategori" readonly />
-                        </div> --}}
                         <!-- thumbnail -->
                         <div class="form-group">
-                            <label for="thumbnail">Thumbnail</label>
-                            <input class="form-control" type="file" id="thumbnail" name="thumbnail" onchange="previewImage()"/>
-                            <img class="img-preview img-fluid">
+                            <label for="input_kategori_thumbnail" class="font-weight-bold">
+                                Thumbnail
+                            </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button id="button_kategori_thumbnail" data-input="input_kategori_thumbnail" data-preview="holder"
+                                        class="btn btn-primary" type="button">
+                                        Browse
+                                    </button>
+                                </div>
+                                <input id="input_kategori_thumbnail" name="thumbnail" value="" type="text"
+                                    class="form-control" placeholder="Thumbnail Post" readonly />
+                            </div>
+                        </div>
+                        <div id="holder">
                         </div>
 
                         <div class="float-right">
@@ -54,7 +58,7 @@
     @push('javascript-external')
         <script src="{{ asset('../vendor/select2/js/select2.full.min.js') }}"></script>
         {{-- filemanager --}}
-        <script src="{{ asset('../vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
+        <script src="{{ asset('/vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
     @endpush
 
     @push('javascript-internal')
@@ -72,20 +76,9 @@
                     let name = $(this).val();
                     $('#input_kategori_slug').val(generateSlug(name));
                 });  
+                //file manager
+                $('#button_kategori_thumbnail').filemanager('image');
             });
-            function previewImage() {
-               const thumbnail = document.querrySelector(#thumbnail);
-               const imgPreview = document.querrySelector('.img-preview');
-
-               imgPreview.style.display = 'block';
-
-               const oFReader = new FileReader();
-               oFReader.readAsDataURL(thumbnail.files[0]);
-
-               oFReader.onload = function(oFREvent) {
-                  imgPreview.src = oFREvent.target.result;
-               }
-            }
         </script>
     @endpush
 @endsection

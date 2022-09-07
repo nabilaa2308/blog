@@ -21,6 +21,17 @@ class tagController extends Controller
         return view('dashboard.tag.index', compact('tags'));
     }
 
+
+    public function select(Request $request)
+    {
+        $tags = [];
+        if ($request->has('q')){
+            $tags = Tag::select('id','name')->search($request->q)->get();
+        } else {
+            $tags = Tag::select('id','name')->limit(5)->get();
+        }
+        return response()->json($tags);
+    }
     /**
      * Show the form for creating a new resource.
      *
