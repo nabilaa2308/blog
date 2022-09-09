@@ -20,10 +20,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->paginate(5);
-        return view('dashboard.post.index', compact('posts'));
+        $statusSelected = in_array($request->get('status'),['publish','draft']) ? $request->get('status') : "publish";
+        $posts = $statusSelected == "publish" ? Post::publish() : Post::draft();
+        // $posts = Post::latest()->paginate(5);
+        if ($request->get('keyword')) {
+            $posts->search($request->get('keyword'));
+        }
+        return view('dashboard.post.index', [
+            'posts' => $posts->get(),
+            'statuses' => $this->statuses(),
+            'statusSelected' =>$statusSelected,
+        ]);
     }
 
     /**
@@ -125,7 +134,6 @@ class PostController extends Controller
         $kategoris = Kategori::all();
         $tags = Tag::all();
         $statuses = $this->statuses();
-        // $post = Post::find();
         return view('dashboard.post.edit', compact('post', 'kategoris', 'tags', 'statuses'));
     }
 
@@ -157,6 +165,7 @@ class PostController extends Controller
         try {
             DB::beginTransaction();
             $dataPost = [
+                'id' => $request->id,
                 'judul' => $request->judul,
                 'slug' => Str::slug($request->judul, '-'),
                 'thumbnail' => parse_url($request->thumbnail)['path'],
@@ -165,18 +174,19 @@ class PostController extends Controller
                 'kategori_id' =>$request->kategori_id,
                 'status' => $request->status
             ];
-            $post->update($dataPost);
+            Post::where('id', $request->id)->update($dataPost);
 
+            
             $dataTagPost = [];
-            foreach ($request->tag as $key => $dtTag){ 
-            $tagPost->update([
-                'post_id' => $post->id,
-                'tag_id' => $dtTag,
-            ]);
+            $tagPost->where('post_id',$request->id)->delete();
+            foreach ($request->tag as $dtTag){ 
+                $createTagPost = TagPost::create([
+                    'post_id' => $request->id,
+                    'tag_id' => $dtTag,
+                    ]);
+                }
 
-            }
-
-            Alert::success('Success', 'Post Berhasil DiUpdate!');
+            Alert::success('Success', 'Post Berhasil DiInput!');
             return redirect()->route('post.index');
 
         } catch (\Throwable $th) {
@@ -186,13 +196,10 @@ class PostController extends Controller
                 $request['tag'] = Tag::select('id', 'name')->whereIn('id', $request->tag)->get();
             }
             return redirect()->route('post.index');
-
-        } finally {
-            DB::commit();
+         } finally {
+        DB::commit();
         }
-        Alert::success('Success', 'Post Berhasil Diupdate!');
-        return redirect()->route('post.index');
-    }
+}
 
     /**
      * Remove the specified resource from storage.

@@ -28,14 +28,14 @@
    </div>
 
    <!-- Nav Item - Post -->
-   <li class="nav-item {{ Request::is('dashboard/post', 'dashboard/post/create', 'dashboard/post/edit') ? 'active' : '' }}">
+   <li class="nav-item {{ Request::is('dashboard/post', 'dashboard/post/create', '  dashboard/post/edit', 'dashboard/post/detail') ? 'active' : '' }}">
        <a class="nav-link" href="/dashboard/post"> 
            <i class="fas fa-fw fa-table"></i>
            <span>Post</span></a>
    </li>
 
    <!-- Nav Item - Kategori -->
-   <li class="nav-item {{ Request::is('dashboard/kategori', 'dashboard/kategori/create', 'dashboard/kategori/edit') ? 'active' : '' }}">
+   <li class="nav-item {{ Request::is('dashboard/kategori', 'dashboard/kategori/create', 'dashboard/kategori/edit', 'dashboard/post/detail') ? 'active' : '' }}">
     <a class="nav-link" href="/dashboard/kategori"> 
         <i class="fas fa-fw fa-table"></i>
            <span>Kategori</span></a>
@@ -47,6 +47,12 @@
            <i class="fas fa-fw fa-table"></i>
            <span>Tag</span></a>
    </li>
+   <!-- Nav Item - Post -->
+   <li class="nav-item {{ Request::is('dashboard/meta', 'dashboard/meta/create', '  dashboard/meta/edit', 'dashboard/meta/detail') ? 'active' : '' }}">
+    <a class="nav-link" href="/dashboard/meta"> 
+        <i class="fas fa-fw fa-table"></i>
+        <span>Meta</span></a>
+</li>
 
    <!-- Divider -->
    <hr class="sidebar-divider">

@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardKategoriController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MetaController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostHomeController;
 use App\Http\Controllers\tagController;
@@ -24,18 +25,10 @@ use App\Models\Kategori;
 */
 
 
-Route::get('/', function(){
-    return view('home',[
-        "title" => "Home",
-        HomeController::class, 'index'
-    ]);
-});
-Route::get('/kategori', function () {
-    return view('kategori',[
-        "title" => "Kategori",
-        HomeController::class, 'listKategori'
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/kategori', [HomeController::class, 'listKategori']);
+
+Route::get('/kategori/{slug}', [HomeController::class, 'showPostByKategori'])->name('post-kategori');
 
 Route::get('/posts', function () {
     return view('posts',[
@@ -56,5 +49,6 @@ Route::group(['prefix' => 'filemanager'], function () {
 Route::resource('/dashboard/post', PostController::class);
 
 Route::resource('/dashboard/tag', tagController::class);
+Route::resource('/dashboard/meta', MetaController::class);
 
 

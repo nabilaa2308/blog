@@ -9,7 +9,7 @@
         <h1 class="text-white mt-4 mb-4 text-center">Post</h1>
     </div>
     
-{{-- @if ($posts->count())
+@if ($posts->count())
 <div class="card mb-3">
     <img src="..." class="card-img-top" alt="...">
     <div class="card-body">
@@ -36,7 +36,7 @@
 
         <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Selengkapnya..</a>
     </article>
-    @endforeach --}}
+    @endforeach
 
 @endsection
 
