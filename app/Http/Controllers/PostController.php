@@ -79,7 +79,7 @@ class PostController extends Controller
             DB::beginTransaction();
             $dataPost = [
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul, '-'),
+                'slug' => $request->slug,
                 'thumbnail' => parse_url($request->thumbnail)['path'],
                 'deskripsi' => $request->deskripsi,
                 'content' => $request->content,
@@ -167,7 +167,7 @@ class PostController extends Controller
             $dataPost = [
                 'id' => $request->id,
                 'judul' => $request->judul,
-                'slug' => Str::slug($request->judul, '-'),
+                'slug' => $request->slug,
                 'thumbnail' => parse_url($request->thumbnail)['path'],
                 'deskripsi' => $request->deskripsi,
                 'content' => $request->content,

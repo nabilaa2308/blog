@@ -14,16 +14,8 @@
           <li class="nav-item">
             <a class="nav-link navbar-brand {{ ($title === "Kategori")? 'active' : '' }}" aria-current="page" href="/kategori">Kategori</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link navbar-brand {{ ($title === "Posts")? 'active' : '' }}" aria-current="page" href="/posts">Post</a>
-          </li>
         </ul>
-        <form class="d-flex">
-          
-          <input class="form-control me-2" type="search"  placeholder="Cari " aria-label="Search">
-          <button class="btn btn-outline-info" type="submit">Search</button>
-         
-        </form>
+        
         <div class="px-2">
             <a class="btn btn-outline-warning" href="/login" >Log In</a>
         </div>

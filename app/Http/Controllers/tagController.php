@@ -52,7 +52,7 @@ class tagController extends Controller
     {
         $tags = Tag::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => $request->slug,
         ]);
         return redirect()->route('tag.index');
     }
@@ -91,7 +91,7 @@ class tagController extends Controller
     {
         $tag->update([
             'name' => $request->name,
-            'slug' => Str::slug($request->name, '-'),
+            'slug' => $request->slug,
         ]);
         return redirect('/dashboard/tag');
     }

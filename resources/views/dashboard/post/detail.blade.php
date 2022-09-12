@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <!-- thumbnail -->
 
-                    <img class="post-thumbnail img-fluid img-thumbnail" width="200px" src="{{ asset('storage/..' . $post->thumbnail) }}">
+                    <img class="img-thumbnail" style="200x700" src="{{ asset('storage/.' . $post->thumbnail) }}">
 
                     <!-- title -->
                     <h2 class="my-1">
@@ -22,7 +22,6 @@
                         {{ $post->deskripsi }}
                     </p>
                     <!-- categories -->
-                   
                         <span class="badge badge-primary">{{ $post->dataKategori->name }}</span>
                     <!-- content -->
                     <div class="py-1">

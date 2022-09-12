@@ -17,7 +17,7 @@
                                     <label for="input_post_judul" class="font-weight-bold">
                                         Judul
                                     </label>
-                                    <input id="input_post_judul" name="judul" type="text" value="{{ old('title') }}" class="form-control @error('judul') is-invalid @enderror" placeholder="Masukkan Judul Post" />
+                                    <input id="input_post_judul" name="judul" type="text" style=".cap   { text-transform: capitalize; }" value="{{ old('title') }}" class="form-control @error('judul') is-invalid @enderror" placeholder="Masukkan Judul Post" />
                                 </div>
                                 <!-- thumbnail -->
                                 <div class="form-group">

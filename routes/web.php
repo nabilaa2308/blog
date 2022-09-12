@@ -12,6 +12,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostHomeController;
 use App\Http\Controllers\tagController;
 use App\Models\Kategori;
+use App\Models\Tag;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +26,17 @@ use App\Models\Kategori;
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/kategori', [HomeController::class, 'listKategori']);
+Route::get('/', [HomeController::class, 'home'])->name('home');
+
+Route::get('/post/{slug}', [HomeController::class, 'showPostDetail'])->name('post-detail');
+
+Route::get('/kategori', [HomeController::class, 'listKategori'])->name('kategori');
+
+Route::get('/search', [HomeController::class, 'searchPosts'])->name('search-post');
 
 Route::get('/kategori/{slug}', [HomeController::class, 'showPostByKategori'])->name('post-kategori');
 
-Route::get('/posts', function () {
-    return view('posts',[
-        "title" => "Posts"
-    ]);
-});
+Route::get('/tag/{slug}', [HomeController::class, 'showPostByTag'])->name('post-tag');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');

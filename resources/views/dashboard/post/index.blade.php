@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('title')
+
 @endsection
 @section('content')
     <div class="row">
