@@ -38,9 +38,7 @@ Route::get('/kategori/{slug}', [HomeController::class, 'showPostByKategori'])->n
 
 Route::get('/tag/{slug}', [HomeController::class, 'showPostByTag'])->name('post-tag');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::resource('/dashboard/kategori', DashboardKategoriController::class);
 

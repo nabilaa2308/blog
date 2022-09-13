@@ -44,6 +44,6 @@ class Post extends Model
 
     public function scopeSearch($query, $judul)
     {
-        return $query->where('judul', 'LIKE', "%($judul)%");
+        return $query->where('judul', 'LIKE', '%'.$judul.'%');
     }
 }

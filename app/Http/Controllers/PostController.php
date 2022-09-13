@@ -29,6 +29,8 @@ class PostController extends Controller
             $posts->search($request->get('keyword'));
         }
         return view('dashboard.post.index', [
+            $request->get('keyword'),
+            'title' => 'Post',
             'posts' => $posts->get(),
             'statuses' => $this->statuses(),
             'statusSelected' =>$statusSelected,
@@ -43,6 +45,7 @@ class PostController extends Controller
     public function create(Request $request, Post $post)
     {
         return view('dashboard.post.create', [
+            'title' => 'Post',
             'kategoris' => Kategori::all(),
             'tags' => Tag::all(),
             'statuses' => $this->statuses(),
@@ -120,7 +123,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('dashboard.post.detail', compact('post'));
+        return view('dashboard.post.detail', [
+            'title' => 'Post',
+            'post' => $post
+        ]);
     }
 
     /**
@@ -134,7 +140,13 @@ class PostController extends Controller
         $kategoris = Kategori::all();
         $tags = Tag::all();
         $statuses = $this->statuses();
-        return view('dashboard.post.edit', compact('post', 'kategoris', 'tags', 'statuses'));
+        return view('dashboard.post.edit', [
+            'title' => 'Post',
+            'post' => $post,
+            'kategoris' => $kategoris,
+            'tags' => $tags,
+            'statuses' => $statuses
+        ]);
     }
 
     /**

@@ -22,7 +22,10 @@ class DashboardKategoriController extends Controller
     public function index()
     {   
         $kategoris = kategori::all();
-        return view('dashboard.kategori.index', compact('kategoris'));
+        return view('dashboard.kategori.index', [
+            'title' => 'Kategori',
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**
@@ -32,7 +35,9 @@ class DashboardKategoriController extends Controller
      */
     public function create()
     {
-        return view('dashboard.kategori.create');
+        return view('dashboard.kategori.create', [
+            'title' => 'Kategori',
+        ]);
     }
 
     /**
@@ -60,7 +65,10 @@ class DashboardKategoriController extends Controller
      */
     public function show(kategori $kategori)
     {
-        return view('dashboard.kategori.detail', ['kategori' => $kategori]);
+        return view('dashboard.kategori.detail', [
+            'title' => 'Kategori',
+            'kategori' => $kategori
+        ]);
     }
 
     /**
@@ -72,7 +80,10 @@ class DashboardKategoriController extends Controller
     public function edit(kategori $kategoris, $id)
     {
         $kategoris = kategori::find($id);
-        return view('dashboard.kategori.edit', compact('kategoris'));
+        return view('dashboard.kategori.edit', [
+            'title' => 'Kategori',
+            'kategoris' => $kategoris
+        ]);
     }
 
     /**

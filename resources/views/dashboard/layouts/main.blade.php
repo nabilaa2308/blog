@@ -10,7 +10,7 @@
         <meta name="description" content="@yield('meta_description','default description')">
         <link rel="canonical" href="{{url()->current()}}"/>
 
-    <title>Ocoding | Dashboard </title>
+    <title>Ocoding | Dashboard - {{ $title }}  </title>
 
     <!-- Custom fonts for this template-->
     <link href="../../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

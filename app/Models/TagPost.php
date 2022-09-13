@@ -16,7 +16,7 @@ class TagPost extends Model
 
     public function scopeSearch($query, $name)
     {
-        return $query->where('name','LIKE', "%{$name}%");
+        return $query->where('name','LIKE', '%'.$name.'%');
     }
 
     public function posts()

@@ -18,7 +18,10 @@ class tagController extends Controller
     public function index()
     {
         $tags = Tag::all();
-        return view('dashboard.tag.index', compact('tags'));
+        return view('dashboard.tag.index', [
+            'title' => 'Tag',
+            'tags' => $tags
+        ]);
     }
 
 
@@ -39,7 +42,9 @@ class tagController extends Controller
      */
     public function create()
     {
-        return view('dashboard.tag.create');
+        return view('dashboard.tag.create', [
+            'title' => 'Tag',
+        ]);
     }
 
     /**
@@ -77,7 +82,10 @@ class tagController extends Controller
     public function edit(Tag $tags, $id)
     {
         $tags = Tag::find($id);
-        return view('dashboard.tag.edit', compact('tags'));
+        return view('dashboard.tag.edit', [
+            'title' => 'Tag',
+            'tags' => $tags
+        ]);
     }
 
     /**

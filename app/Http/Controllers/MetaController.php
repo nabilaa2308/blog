@@ -17,7 +17,10 @@ class MetaController extends Controller
     public function index()
     {
         $metas = Meta::all();
-        return view('dashboard.meta.index', compact('metas'));
+        return view('dashboard.meta.index', [
+            'title' => 'Meta',
+            'metas' => $metas
+        ]);
     }
 
     /**
@@ -27,7 +30,9 @@ class MetaController extends Controller
      */
     public function create()
     {
-        return view('dashboard.meta.create');
+        return view('dashboard.meta.create',[
+            'title' => 'Meta',
+        ]);
     }
 
     /**
@@ -66,7 +71,10 @@ class MetaController extends Controller
     public function edit(Meta $meta, $id)
     {
         $meta = Meta::find($id);
-        return view('dashboard.meta.edit', compact('meta'));
+        return view('dashboard.meta.edit', [
+            'title' => 'Meta',
+            'meta' => $meta
+        ]); 
         return redirect()->route('meta.index');
     }
 

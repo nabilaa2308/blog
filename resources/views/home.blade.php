@@ -51,6 +51,7 @@
                                         alt="Post">
                                 </div>
                                 <div class="col-lg-6">
+                                    <br>
                                     <h2 class="card-title">{{ $dtpost->judul }}</h2>
                                     <p class="card-text">{{ $dtpost->deskripsi }}</p>
                                     <a href="{{ route('post-detail', ['slug' => $dtpost->slug]) }}" class="btn btn-primary">
@@ -110,4 +111,6 @@
             </div>
         @endif
         <!-- pagination:End -->
+        </div>
+    </div>
     @endsection

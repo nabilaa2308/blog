@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Kategori;
 use App\Models\Tag;
+use App\Models\TagPost;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,7 +35,7 @@ class HomeController extends Controller
     public function searchPosts(Request $request, Post $posts)
     {
         if ($request->get('keyword')) {
-            return redirect()->route('home');
+            $posts->search($request->get('keyword'));
         }
         return view('search-post', [
             'title' => $posts->judul,
@@ -75,18 +76,18 @@ class HomeController extends Controller
 
     public function showPostByTag($slug)
     {
-        $posts = Post::publish()->whereHas('dataTags', function($query) use ($slug){
+        $posts = Post::publish()->whereHas('dataTagPost', function($query) use ($slug){
             return $query->where('slug',$slug);
         })->paginate($this->perpage);
 
-        $tag = Tag::where('slug',$slug)->first();
-        $tags =Tag::search($tag->name)->get();
+        $dataTags = Tag::where('slug',$slug)->first();
+        $dataTagPost = Tag::search($dataTags->name)->get();
 
         $content = [
-            'title' => $tag->name,
             'posts' => $posts,
-            'tag' => $tag,
-            'tags' => $tags,
+            'dataTags' => $dataTags,
+            'dataTagPost' => $dataTagPost,
+            'title' => $dataTags->name,
         ];
         return view('post-tag', $content );
     }

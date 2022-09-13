@@ -1,6 +1,7 @@
 @extends('dashboard.layouts.main')
 
 @section('title')
+Ocoding | Dashboard - {{ $title }}
 @endsection
 @section('content')
 <div class="container-fluid">
@@ -92,3 +93,4 @@
     </div>
     @include('sweetalert::alert')
 @endsection
+
