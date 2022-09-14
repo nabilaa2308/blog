@@ -43,7 +43,7 @@ class tagController extends Controller
     public function create()
     {
         return view('dashboard.tag.create', [
-            'title' => 'Tag',
+            'title' => 'Tag - Create',
         ]);
     }
 
@@ -83,7 +83,7 @@ class tagController extends Controller
     {
         $tags = Tag::find($id);
         return view('dashboard.tag.edit', [
-            'title' => 'Tag',
+            'title' => 'Tag - Edit',
             'tags' => $tags
         ]);
     }

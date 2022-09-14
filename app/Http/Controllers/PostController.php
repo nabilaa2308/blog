@@ -45,7 +45,7 @@ class PostController extends Controller
     public function create(Request $request, Post $post)
     {
         return view('dashboard.post.create', [
-            'title' => 'Post',
+            'title' => 'Post - Create',
             'kategoris' => Kategori::all(),
             'tags' => Tag::all(),
             'statuses' => $this->statuses(),
@@ -87,7 +87,7 @@ class PostController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'content' => $request->content,
                 'kategori_id' =>$request->kategori_id,
-                'status' => $request->status
+                'status' => $request->status,
             ];
             $createPost = Post::create($dataPost);
 
@@ -124,7 +124,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('dashboard.post.detail', [
-            'title' => 'Post',
+            'title' => 'Post - Detail',
             'post' => $post
         ]);
     }
@@ -141,7 +141,7 @@ class PostController extends Controller
         $tags = Tag::all();
         $statuses = $this->statuses();
         return view('dashboard.post.edit', [
-            'title' => 'Post',
+            'title' => 'Post - Edit',
             'post' => $post,
             'kategoris' => $kategoris,
             'tags' => $tags,

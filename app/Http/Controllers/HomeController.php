@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Kategori;
 use App\Models\Tag;
 use App\Models\TagPost;
+use App\Models\Meta;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,6 +17,9 @@ class HomeController extends Controller
     {
         $posts = Post::all();
         $tag = Tag::all();
+        // Meta::set('title', $posts->judul);
+        // Meta::set('description', $posts->deskripsi);
+        // Meta::set('image', asset('storage/' . $posts->thumbnail));
         return view('home', [
             'title' => "Home",
             'posts' => Post::publish()->latest()->paginate($this->perpage),
@@ -79,16 +83,21 @@ class HomeController extends Controller
         $posts = Post::publish()->whereHas('dataTagPost', function($query) use ($slug){
             return $query->where('slug',$slug);
         })->paginate($this->perpage);
-
+        
         $dataTags = Tag::where('slug',$slug)->first();
         $dataTagPost = Tag::search($dataTags->name)->get();
 
-        $content = [
-            'posts' => $posts,
-            'dataTags' => $dataTags,
-            'dataTagPost' => $dataTagPost,
-            'title' => $dataTags->name,
-        ];
+        $dataTagPost = [];
+        foreach ($dataTags as $key => $dataTagPost) {
+            $content = [
+                'posts' => $posts,
+                'dataTags' => $dataTags,
+                'dataTagPost' => $dataTagPost,
+                'title' => $dataTags->name,
+            ];
+        }
+        
+        // dd($dataTagPost);
         return view('post-tag', $content );
     }
 }

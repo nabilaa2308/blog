@@ -36,7 +36,7 @@ class DashboardKategoriController extends Controller
     public function create()
     {
         return view('dashboard.kategori.create', [
-            'title' => 'Kategori',
+            'title' => 'Kategori - Create',
         ]);
     }
 
@@ -66,7 +66,7 @@ class DashboardKategoriController extends Controller
     public function show(kategori $kategori)
     {
         return view('dashboard.kategori.detail', [
-            'title' => 'Kategori',
+            'title' => 'Kategori - Detail',
             'kategori' => $kategori
         ]);
     }
@@ -81,7 +81,7 @@ class DashboardKategoriController extends Controller
     {
         $kategoris = kategori::find($id);
         return view('dashboard.kategori.edit', [
-            'title' => 'Kategori',
+            'title' => 'Kategori - Edit',
             'kategoris' => $kategoris
         ]);
     }

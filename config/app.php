@@ -165,6 +165,7 @@ return [
         UniSharp\LaravelFilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Eusonlito\LaravelMeta\MetaServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +234,11 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Meta'    => Eusonlito\LaravelMeta\Facade::class,
+        'SEOMeta'       => Artesaos\SEOTools\Facades\SEOMeta::class,
+        'OpenGraph'     => Artesaos\SEOTools\Facades\OpenGraph::class,
+        'Twitter'       => Artesaos\SEOTools\Facades\TwitterCard::class,
+        'JsonLd'        => Artesaos\SEOTools\Facades\JsonLd::class,
+        'JsonLdMulti'   => Artesaos\SEOTools\Facades\JsonLdMulti::class,
     ],
 
 ];
