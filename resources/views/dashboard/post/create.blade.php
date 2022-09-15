@@ -6,7 +6,7 @@ Ocoding | Dashboard | {{ $title }}
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <form action="{{ route('post.store') }}" method="POST">
+            <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <div class="card-header">

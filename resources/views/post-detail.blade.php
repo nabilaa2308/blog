@@ -56,7 +56,7 @@ Ocoding Bog | {{ $title }}
           <div class="card-body">
              <!-- tag list:start -->
              @foreach ($posts->dataTagPost as $tag)
-             <a href="" class="badge badge-info py-2 px-4 my-1">
+             <a href="{{ route('post-tag', ['slug'=> $tag->dataTags->slug]) }}" class="badge badge-info py-2 px-4 my-1">
                #{{ $tag->dataTags->name }}
             </a>
            @endforeach

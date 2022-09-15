@@ -30,7 +30,7 @@ class Post extends Model
     }
     public function dataTags()
     {
-        return $this->belongsTo(Tag::class, 'tag_id', 'id');
+        return $this->belongsTo(Tag::class, 'tag_post', 'tag_id', 'id');
     }
 
     public function scopePublish($query)

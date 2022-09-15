@@ -3,8 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            <form action="{{ route('meta.store') }}" method="POST">
-                @csrf
+            <form action="{{ route('meta.store') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="card">
                     <div class="card-header">
                         <h1 class="h3 mb-0 text-gray-800">Create Post</h1>
@@ -22,14 +22,14 @@
                                 <!-- meta:keyword -->
                                 <div class="form-group">
                                     <label for="input_meta_keyword" class="font-weight-bold">
-                                        Keyword
+                                        Meta Keyword
                                     </label>
                                     <input id="input_meta_keyword" name="meta_keyword" type="text" value="{{ old('meta_keyword') }}" class="form-control @error('meta_keyword') is-invalid @enderror" placeholder="Masukkan Meta Keyword" />
                                 </div>
                                 <!-- meta:deskripsi -->
                                 <div class="form-group">
                                     <label for="input_meta_deskripsi" class="font-weight-bold">
-                                        Deskripsi
+                                        Meta Deskripsi
                                     </label>
                                     <input id="input_meta_deskripsi" name="meta_deskripsi" type="text" value="{{ old('meta_deskripsi') }}" class="form-control @error('meta_deskeripsi') is-invalid @enderror" placeholder="Masukkan Meta Deskripsi" />
                                 </div>

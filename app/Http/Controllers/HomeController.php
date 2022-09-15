@@ -67,7 +67,7 @@ class HomeController extends Controller
 
     public function showPostDetail($slug)
     {
-        $posts = Post::with(['dataKategori', 'dataTags'])->where('slug', $slug)->first();
+        $posts = Post::with(['dataKategori','dataTagPost.dataTags'])->where('slug', $slug)->first();
         if (!$posts) {
             return redirect()->route('home');
         }
@@ -80,22 +80,18 @@ class HomeController extends Controller
 
     public function showPostByTag($slug)
     {
-        $posts = Post::publish()->whereHas('dataTagPost', function($query) use ($slug){
+        $posts = Post::publish()->whereHas('dataTagPost.dataTags', function($query) use ($slug){
             return $query->where('slug',$slug);
         })->paginate($this->perpage);
         
-        $dataTags = Tag::where('slug',$slug)->first();
-        $dataTagPost = Tag::search($dataTags->name)->get();
 
-        $dataTagPost = [];
-        foreach ($dataTags as $key => $dataTagPost) {
+        $dataTags = Tag::where('slug',$slug)->first();
+        // $dataTagPost = TagPost::with($dataTags->name)->get();
+        
             $content = [
                 'posts' => $posts,
-                'dataTags' => $dataTags,
-                'dataTagPost' => $dataTagPost,
                 'title' => $dataTags->name,
             ];
-        }
         
         // dd($dataTagPost);
         return view('post-tag', $content );

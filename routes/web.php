@@ -49,6 +49,6 @@ Route::group(['prefix' => 'filemanager'], function () {
 Route::resource('/dashboard/post', PostController::class);
 
 Route::resource('/dashboard/tag', tagController::class);
-Route::resource('/dashboard/meta', MetaController::class);
+Route::post('/meta', [MetaController::class, 'MetaController@store']);
 
 
