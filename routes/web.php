@@ -6,10 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardKategoriController;
-use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MetaController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostHomeController;
 use App\Http\Controllers\tagController;
 use App\Models\Kategori;
 use App\Models\Tag;
@@ -49,6 +47,7 @@ Route::group(['prefix' => 'filemanager'], function () {
 Route::resource('/dashboard/post', PostController::class);
 
 Route::resource('/dashboard/tag', tagController::class);
-Route::post('/meta', [MetaController::class, 'MetaController@store']);
+// Route::post('/meta', [MetaController::class, 'MetaController@store']);
+Route::resource('/dashboard/meta', MetaController::class);
 
 

@@ -55,36 +55,6 @@
 </li>
 
    <!-- Divider -->
-   <hr class="sidebar-divider">
-
-   <!-- Heading -->
-   <div class="sidebar-heading">
-       User
-   </div>
-
-   <!-- Nav Item - Charts -->
-   <li class="nav-item ">
-       <a class="nav-link" href="/dashboard/#">
-           <i class="fas fa-fw fa-chart-area"></i>
-           <span>User</span></a>
-   </li>
-
-   <!-- Divider -->
-   <hr class="sidebar-divider">
-
-   <!-- Heading -->
-   <div class="sidebar-heading">
-       File Manager
-   </div>
-
-   <!-- Nav Item - File Manager -->
-   <li class="nav-item ">
-       <a class="nav-link" href="#">
-           <i class="fas fa-fw fa-chart-area"></i>
-           <span>File Manager</span></a>
-   </li>
-
-   <!-- Divider -->
    <hr class="sidebar-divider d-none d-md-block">
 
    <!-- Sidebar Toggler (Sidebar) -->

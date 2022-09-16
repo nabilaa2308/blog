@@ -50,7 +50,7 @@ class DashboardKategoriController extends Controller
     {
         $kategori = Kategori::create([
             'name' => $request->name,
-            'slug' => $request->slug,
+            'slug' => Str::slug($request->name, '-'),
             'thumbnail' => parse_url($request->thumbnail)['path'],
         ]);
         Alert::success('Success', 'Kategori Berhasil Ditambahkan!');
@@ -97,7 +97,7 @@ class DashboardKategoriController extends Controller
     {
         $kategori->update([
             'name' => $request->name,
-            'slug' => $request->slug,
+            'slug' => str::slug($request->name, '-'),
             'thumbnail' => parse_url($request->thumbnail)['path'],
         ]);
         Alert::success('Success', 'Kategori Berhasil Diupdate!');

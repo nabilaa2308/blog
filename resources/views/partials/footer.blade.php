@@ -1,5 +1,5 @@
  <!-- Footer Start -->
- <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
+ <div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-3" style="margin-top: 90px;">
     <div class="container mt-5 pt-5">
         <div class="row">
             <div class="text-center pt-3">

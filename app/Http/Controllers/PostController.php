@@ -179,7 +179,7 @@ class PostController extends Controller
             $dataPost = [
                 'id' => $request->id,
                 'judul' => $request->judul,
-                'slug' => $request->slug,
+                'slug' => str::slug($request->name, '-'),
                 'thumbnail' => parse_url($request->thumbnail)['path'],
                 'deskripsi' => $request->deskripsi,
                 'content' => $request->content,
@@ -188,7 +188,6 @@ class PostController extends Controller
             ];
             Post::where('id', $request->id)->update($dataPost);
 
-            
             $dataTagPost = [];
             $tagPost->where('post_id',$request->id)->delete();
             foreach ($request->tag as $dtTag){ 
@@ -198,7 +197,7 @@ class PostController extends Controller
                     ]);
                 }
 
-            Alert::success('Success', 'Post Berhasil DiInput!');
+            Alert::success('Success', 'Post Berhasil DiUPdate!');
             return redirect()->route('post.index');
 
         } catch (\Throwable $th) {
