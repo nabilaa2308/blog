@@ -22,7 +22,7 @@ Ocoding | Dashboard | {{ $title }}
                                     <label for="input_post_judul" class="font-weight-bold">
                                         Judul
                                     </label>
-                                    <input id="input_post_judul" name="judul" type="text"
+                                    <input id="input_post_judul" name="judul" type="text" style="text-transform: capitalize;"
                                         value="{{ old('judul', $post->judul) }}" class="form-control"
                                         placeholder="Masukkan Judul Post" />
                                 </div>

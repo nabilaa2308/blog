@@ -65,6 +65,7 @@ class PostController extends Controller
             $request->all(),
             [
                 'judul' => 'required',
+                'slug' => 'required',
                 'thumbnail' => 'required',
                 'deskripsi' => 'required',
                 'content' => 'required',
@@ -81,8 +82,8 @@ class PostController extends Controller
         try {
             DB::beginTransaction();
             $dataPost = [
-                'judul' => $request->judul,
-                'slug' => $request->slug,
+                'judul' => Str::ucfirst($request->judul),
+                'slug' => str::slug($request->judul, '-'),
                 'thumbnail' => parse_url($request->thumbnail)['path'],
                 'deskripsi' => $request->deskripsi,
                 'content' => $request->content,
@@ -162,6 +163,7 @@ class PostController extends Controller
             $request->all(),
             [
                 'judul' => 'required',
+                'slug' => 'required',
                 'thumbnail' => 'required',
                 'deskripsi' => 'required',
                 'content' => 'required',
@@ -178,8 +180,8 @@ class PostController extends Controller
             DB::beginTransaction();
             $dataPost = [
                 'id' => $request->id,
-                'judul' => $request->judul,
-                'slug' => str::slug($request->name, '-'),
+                'judul' => str::ucfirst($request->judul),
+                'slug' => str::slug($request->judul, '-'),
                 'thumbnail' => parse_url($request->thumbnail)['path'],
                 'deskripsi' => $request->deskripsi,
                 'content' => $request->content,
@@ -197,7 +199,7 @@ class PostController extends Controller
                     ]);
                 }
 
-            Alert::success('Success', 'Post Berhasil DiUPdate!');
+            Alert::success('Success', 'Post Berhasil DiUpdate!');
             return redirect()->route('post.index');
 
         } catch (\Throwable $th) {

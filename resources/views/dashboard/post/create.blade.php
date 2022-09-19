@@ -20,7 +20,16 @@ Ocoding | Dashboard | {{ $title }}
                                     <label for="input_post_judul" class="font-weight-bold">
                                         Judul
                                     </label>
-                                    <input id="input_post_judul" name="judul" type="text" style=".cap   { text-transform: capitalize; }" value="{{ old('title') }}" class="form-control @error('judul') is-invalid @enderror" placeholder="Masukkan Judul Post" />
+                                    <input id="input_post_judul" name="judul" type="text" style="text-transform: capitalize;" value="{{ old('title') }}" class="form-control @error('judul') is-invalid @enderror" placeholder="Masukkan Judul Post" />
+                                </div>
+                                <!-- slug -->
+                                <div class="form-group">
+                                    <label for="input_post_slug" class="font-weight-bold">
+                                        Slug
+                                    </label>
+                                    <input id="input_post_slug" name="slug" type="text"
+                                        value="{{ old('slug') }}" class="form-control @error('slug') is-invalid @enderror" placeholder="Slug Post"
+                                        readonly />
                                 </div>
                                 <!-- thumbnail -->
                                 <div class="form-group">
@@ -158,10 +167,10 @@ Ocoding | Dashboard | {{ $title }}
                         .replace(/[^a-z\d-]/gi, '-')
                         .replace(/-+/g, '-').replace(/^-|-$/g, "");
                 }
-                // event:input name kategori
-                $('#input_kategori_name').change(function() {
+                // event:input judul post
+                $('#input_post_judul').change(function() {
                     let name = $(this).val();
-                    $('#input_kategori_slug').val(generateSlug(name));
+                    $('#input_post_slug').val(generateSlug(name));
                 });
                 // TextEditor TinyMCE5
                 $("#input_post_content").tinymce({

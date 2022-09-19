@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    private $perpage = 10;
+    private $perpage = 4;
 
     public function home()
     {
