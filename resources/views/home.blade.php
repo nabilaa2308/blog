@@ -47,13 +47,13 @@
     </div>
     <br>
     <main class="container border py-5">
-        <div class="row g-5 ">
-            <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12 ">
+        <div class="row">
+            <div class="col-lg-8 col-xl-8 col-md-12 col-sm-12">
                 <div class="row">
                     @forelse ($posts as $dtpost)
                         <div class="col-6">
                             <!-- Post list:start -->
-                            <div class="card mb-4 ">
+                            <div class="card mb-4">
                                 <div class="card-body">
                                     <div class="col-lg-6-md-6">
                                         <!-- thumbnail:start -->
@@ -92,7 +92,7 @@
                 <!-- tag Widget -->
                 <div class="card mb-5">
                     <h5 class="card-header">
-                        <img class="img-profile rounded-circle" src="image/tag.png" width="25px">
+                        <img class="img-tag rounded-circle" src="image/tag.png" width="25px">
                         Tag
                     </h5>
                     <div class="card-body">
